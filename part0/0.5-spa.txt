@@ -1,0 +1,21 @@
+title 0.5 SPA
+
+note over Browser:
+server load all the data in the browser
+end note
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server-->Browser: HTML code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server-->Browser: main.css
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server-->Browser: main.js
+
+note over Browser:
+Browser executes Js code and request data.json from server
+end note
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server-->Browser: [{"content":"YNWA","date":"2021-09-23T17:47:51.886Z"}, ...]
+
+note over Browser:
+Finally browser executes eventhandler and render and display the notes
+end note

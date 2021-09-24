@@ -1,0 +1,7 @@
+title 0.6 New Note SPA
+
+note over Browser:
+Browser makes a post request, then server stays in the same page and runs Js, the event handler creates a new note, adds it to the notes list, rerenders the note list on the page and sends the new note to the server
+end note
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+Server-->Browser: HTTP 201 (created) 
