@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "node index.js",
-    "heroku-postbuild": "npm run build"
+    "start": "node index.js"
   },
   "author": "Marcos Joel Müller",
   "license": "ISC",
