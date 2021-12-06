@@ -56,25 +56,53 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-// Add new person
-app.post("/api/persons", (request, response) => {
-  const body = request.body;
+// // Add new person
+// app.post("/api/persons", (request, response) => {
+//   const body = request.body;
 
-  if (body.content === undefined) {
-    return response.status(400).json({ error: "content missing" });
+//   if (body.content === undefined) {
+//     return response.status(400).json({ error: "content missing" });
+//   }
+//   // Person Constructor
+//   const person = new Person({
+//     name: body.name,
+//     number: body.number,
+//   });
+//   // Save to database
+//   person
+//     .save()
+//     .then((savedNote) => savedNote.toJSON())
+//     .then((savedAndFormattedPerson) => {
+//       response.json(savedAndFormattedPerson);
+//     });
+// });
+
+app.post("/api/persons", (req, res, next) => {
+  const { body } = req;
+
+  // Error handling
+  if (!body.name) {
+    return res.status(400).json({
+      error: "name is required",
+    });
   }
-  // Person Constructor
+  if (!body.number) {
+    return res.status(400).json({
+      error: "number is required",
+    });
+  }
+
   const person = new Person({
     name: body.name,
     number: body.number,
   });
-  // Save to database
+
   person
     .save()
-    .then((savedNote) => savedNote.toJSON())
-    .then((savedAndFormattedPerson) => {
-      response.json(savedAndFormattedPerson);
-    });
+    .then((savedPerson) => {
+      res.json(savedPerson.toJSON());
+    })
+    .catch((error) => next(error));
 });
 
 // Update person
